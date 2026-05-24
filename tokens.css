@@ -305,6 +305,46 @@
 }
 
 /* ============================================================
+   FIGMA VARIABLE ALIASES — Static
+   ============================================================ */
+:root {
+
+  /* Figma typography, font, line-height, and layout aliases */
+  --key-font01                 : var(--font-family-01);
+  --key-font02                 : var(--font-family-02);
+  --key-font03                 : var(--font-family-03);
+  --title-xxlarge              : var(--font-size-title2);
+  --title-xlarge               : var(--font-size-title3);
+  --title-large                : var(--font-size-title3);
+  --title-medium               : var(--font-size-heading1);
+  --title-small                : var(--font-size-heading3);
+  --title-xxsmall              : var(--font-size-heading4);
+  --link-large                 : var(--font-size-body2);
+  --link-small                 : var(--font-size-label1);
+  --link-xsmall                : var(--font-size-caption1);
+  --label-xsmall               : var(--font-size-label2);
+  --line-height\/line-height-18: var(--line-height-18);
+  --line-height\/line-height-20: var(--line-height-20);
+  --line-height\/line-height-22: var(--line-height-22);
+  --line-height\/line-height-24: var(--line-height-24);
+  --line-height\/line-height-26: var(--line-height-26);
+  --line-height\/line-height-28: var(--line-height-28);
+  --line-height\/line-height-30: var(--line-height-30);
+  --line-height\/line-height-32: var(--line-height-32);
+  --line-height\/line-height-34: var(--line-height-34);
+  --line-height\/line-height-36: var(--line-height-36);
+  --line-height\/line-height-38: var(--line-height-38);
+  --line-height\/line-height-40: var(--line-height-40);
+  --line-height\/line-height-44: var(--line-height-44);
+  --line-height\/line-height-48: var(--line-height-48);
+  --line-height\/line-height-56: var(--line-height-56);
+  --line-height\/line-height-64: var(--line-height-64);
+  --resolution\/layout-gap     : 320px;
+  --resolution\/layout-gap2    : 360px;
+  --resolution\/layout-gap3    : 460px;
+}
+
+/* ============================================================
    RESPONSIVE — Tablet (768px)
    ============================================================ */
 @media (max-width: 1199px) {
@@ -462,6 +502,41 @@
   --color-status-success   : var(--color-success-50);
   --color-status-info-bg   : var(--color-information-5);
   --color-status-info      : var(--color-information-50);
+
+  /* Figma color aliases */
+  --color\/key\/primary          : var(--color-key-primary);
+  --color\/key\/secondary        : var(--color-key-secondary);
+  --color\/key\/sub-color01      : var(--color-key-sub-color01);
+  --color\/key\/accent01         : var(--color-key-accent01);
+  --color\/key\/accent02         : var(--color-key-accent02);
+  --color\/background\/bg-color01: var(--color-bg-01);
+  --color\/background\/bg-color02: var(--color-bg-02);
+  --color\/background\/bg-color03: var(--color-bg-03);
+  --color\/background\/bg-color04: var(--color-bg-04);
+  --color\/background\/bg-color05: var(--color-bg-05);
+  --color\/background\/bg-color06: var(--color-bg-06);
+  --color\/background\/bg-color07: var(--color-bg-07);
+  --color\/background\/bg-color08: var(--color-bg-08);
+  --color\/gray\/white           : var(--color-gray-white);
+  --color\/gray\/black           : var(--color-gray-black);
+  --color\/gray\/gray-1          : var(--color-gray-1);
+  --color\/gray\/gray-2          : var(--color-gray-2);
+  --color\/gray\/gray-3          : var(--color-gray-3);
+  --color\/gray\/gray-4          : var(--color-gray-4);
+  --color\/gray\/gray-5          : var(--color-gray-5);
+  --color\/gray\/gray-6          : var(--color-gray-6);
+  --color\/gray\/gray-7          : var(--color-gray-7);
+  --color\/gray\/gray-8          : var(--color-gray-8);
+  --color\/gray\/gray-9          : var(--color-gray-9);
+  --color\/gray\/gray-10         : var(--color-gray-10);
+  --color\/text\/basic           : #151515;
+  --color\/text\/primary         : #0d3a65;
+  --color\/text\/subtle          : var(--color-gray-4);
+  --color\/text\/bpoint-blue     : #0b50d0;
+  --color\/text\/warning         : var(--color-warning-60);
+  --color\/line\/line-color01    : #dddddd;
+  --color\/line\/line-color09    : #0e0e0e;
+  --color\/light\/alpha\/white75 : var(--color-alpha-white-75);
 }
 
 /* ============================================================
@@ -520,5 +595,40 @@
   --color-status-success   : var(--color-success-50);
   --color-status-info-bg   : var(--color-information-5);
   --color-status-info      : var(--color-information-50);
+
+  /* Figma color aliases */
+  --color\/key\/primary          : var(--color-key-primary);
+  --color\/key\/secondary        : var(--color-key-secondary);
+  --color\/key\/sub-color01      : var(--color-key-sub-color01);
+  --color\/key\/accent01         : var(--color-key-accent01);
+  --color\/key\/accent02         : var(--color-key-accent02);
+  --color\/background\/bg-color01: var(--color-bg-01);
+  --color\/background\/bg-color02: var(--color-bg-02);
+  --color\/background\/bg-color03: var(--color-bg-03);
+  --color\/background\/bg-color04: var(--color-bg-04);
+  --color\/background\/bg-color05: var(--color-bg-05);
+  --color\/background\/bg-color06: var(--color-bg-06);
+  --color\/background\/bg-color07: var(--color-bg-07);
+  --color\/background\/bg-color08: var(--color-bg-08);
+  --color\/gray\/white           : var(--color-gray-white);
+  --color\/gray\/black           : var(--color-gray-black);
+  --color\/gray\/gray-1          : var(--color-gray-1);
+  --color\/gray\/gray-2          : var(--color-gray-2);
+  --color\/gray\/gray-3          : var(--color-gray-3);
+  --color\/gray\/gray-4          : var(--color-gray-4);
+  --color\/gray\/gray-5          : var(--color-gray-5);
+  --color\/gray\/gray-6          : var(--color-gray-6);
+  --color\/gray\/gray-7          : var(--color-gray-7);
+  --color\/gray\/gray-8          : var(--color-gray-8);
+  --color\/gray\/gray-9          : var(--color-gray-9);
+  --color\/gray\/gray-10         : var(--color-gray-10);
+  --color\/text\/basic           : #f4f5f6;
+  --color\/text\/primary         : #cdd1d5;
+  --color\/text\/subtle          : var(--color-gray-7);
+  --color\/text\/bpoint-blue     : #0b50d0;
+  --color\/text\/warning         : var(--color-warning-60);
+  --color\/line\/line-color01    : #464c53;
+  --color\/line\/line-color09    : #f4f5f6;
+  --color\/light\/alpha\/white75 : var(--color-alpha-white-75);
 }
 

@@ -62,6 +62,97 @@ function decl(name, value, pad = 0) {
   return `  ${name.padEnd(pad)}: ${value};\n`;
 }
 
+/** Figma variable names that contain "/" must be escaped in CSS. */
+function figmaVar(name) {
+  return `--${name.replace(/\//g, '\\/')}`;
+}
+
+function figmaDecl(name, value, pad = 0) {
+  return decl(figmaVar(name), value, pad);
+}
+
+function renderFigmaStaticAliases(indent = '  ') {
+  const aliases = [
+    ['key-font01', 'var(--font-family-01)'],
+    ['key-font02', 'var(--font-family-02)'],
+    ['key-font03', 'var(--font-family-03)'],
+    ['title-xxlarge', 'var(--font-size-title2)'],
+    ['title-xlarge', 'var(--font-size-title3)'],
+    ['title-large', 'var(--font-size-title3)'],
+    ['title-medium', 'var(--font-size-heading1)'],
+    ['title-small', 'var(--font-size-heading3)'],
+    ['title-xxsmall', 'var(--font-size-heading4)'],
+    ['link-large', 'var(--font-size-body2)'],
+    ['link-small', 'var(--font-size-label1)'],
+    ['link-xsmall', 'var(--font-size-caption1)'],
+    ['label-xsmall', 'var(--font-size-label2)'],
+    ['line-height/line-height-18', 'var(--line-height-18)'],
+    ['line-height/line-height-20', 'var(--line-height-20)'],
+    ['line-height/line-height-22', 'var(--line-height-22)'],
+    ['line-height/line-height-24', 'var(--line-height-24)'],
+    ['line-height/line-height-26', 'var(--line-height-26)'],
+    ['line-height/line-height-28', 'var(--line-height-28)'],
+    ['line-height/line-height-30', 'var(--line-height-30)'],
+    ['line-height/line-height-32', 'var(--line-height-32)'],
+    ['line-height/line-height-34', 'var(--line-height-34)'],
+    ['line-height/line-height-36', 'var(--line-height-36)'],
+    ['line-height/line-height-38', 'var(--line-height-38)'],
+    ['line-height/line-height-40', 'var(--line-height-40)'],
+    ['line-height/line-height-44', 'var(--line-height-44)'],
+    ['line-height/line-height-48', 'var(--line-height-48)'],
+    ['line-height/line-height-56', 'var(--line-height-56)'],
+    ['line-height/line-height-64', 'var(--line-height-64)'],
+    ['resolution/layout-gap', '320px'],
+    ['resolution/layout-gap2', '360px'],
+    ['resolution/layout-gap3', '460px'],
+  ];
+
+  const maxLen = Math.max(...aliases.map(([name]) => figmaVar(name).length));
+  return aliases.map(([name, value]) => indent + figmaDecl(name, value, maxLen).trimStart()).join('');
+}
+
+function renderFigmaColorAliases(themeKey, indent = '  ') {
+  const light = themeKey === 'light';
+  const aliases = [
+    ['color/key/primary', 'var(--color-key-primary)'],
+    ['color/key/secondary', 'var(--color-key-secondary)'],
+    ['color/key/sub-color01', 'var(--color-key-sub-color01)'],
+    ['color/key/accent01', 'var(--color-key-accent01)'],
+    ['color/key/accent02', 'var(--color-key-accent02)'],
+    ['color/background/bg-color01', 'var(--color-bg-01)'],
+    ['color/background/bg-color02', 'var(--color-bg-02)'],
+    ['color/background/bg-color03', 'var(--color-bg-03)'],
+    ['color/background/bg-color04', 'var(--color-bg-04)'],
+    ['color/background/bg-color05', 'var(--color-bg-05)'],
+    ['color/background/bg-color06', 'var(--color-bg-06)'],
+    ['color/background/bg-color07', 'var(--color-bg-07)'],
+    ['color/background/bg-color08', 'var(--color-bg-08)'],
+    ['color/gray/white', 'var(--color-gray-white)'],
+    ['color/gray/black', 'var(--color-gray-black)'],
+    ['color/gray/gray-1', 'var(--color-gray-1)'],
+    ['color/gray/gray-2', 'var(--color-gray-2)'],
+    ['color/gray/gray-3', 'var(--color-gray-3)'],
+    ['color/gray/gray-4', 'var(--color-gray-4)'],
+    ['color/gray/gray-5', 'var(--color-gray-5)'],
+    ['color/gray/gray-6', 'var(--color-gray-6)'],
+    ['color/gray/gray-7', 'var(--color-gray-7)'],
+    ['color/gray/gray-8', 'var(--color-gray-8)'],
+    ['color/gray/gray-9', 'var(--color-gray-9)'],
+    ['color/gray/gray-10', 'var(--color-gray-10)'],
+    ['color/text/basic', light ? '#151515' : '#f4f5f6'],
+    ['color/text/primary', light ? '#0d3a65' : '#cdd1d5'],
+    ['color/text/subtle', light ? 'var(--color-gray-4)' : 'var(--color-gray-7)'],
+    ['color/text/bpoint-blue', '#0b50d0'],
+    ['color/text/warning', 'var(--color-warning-60)'],
+    ['color/line/line-color01', light ? '#dddddd' : '#464c53'],
+    ['color/line/line-color09', light ? '#0e0e0e' : '#f4f5f6'],
+    ['color/light/alpha/white75', 'var(--color-alpha-white-75)'],
+  ];
+
+  const maxLen = Math.max(...aliases.map(([name]) => figmaVar(name).length));
+  return aliases.map(([name, value]) => indent + figmaDecl(name, value, maxLen).trimStart()).join('');
+}
+
 // ─────────────────────────────────────────────────────────────────
 //  CSS 포매터 헬퍼: 섹션별 선언 블록 생성
 // ─────────────────────────────────────────────────────────────────
@@ -193,6 +284,11 @@ function generateCSS(raw) {
 
   out += renderSection('RESPONSIVE DEFAULTS — Desktop', renderBlock(':root', bpSections.desktop));
 
+  out += renderSection(
+    'FIGMA VARIABLE ALIASES — Static',
+    renderBlock(':root', [`\n  /* Figma typography, font, line-height, and layout aliases */\n`, renderFigmaStaticAliases()])
+  );
+
   if (bpSections.tablet.length) {
     const inner = `  :root {\n${bpSections.tablet.join('')}  }\n`;
     out += renderSection('RESPONSIVE — Tablet (768px)', `@media (max-width: 1199px) {\n${inner}}\n`);
@@ -220,6 +316,8 @@ function generateCSS(raw) {
           lines.push(decl(cssVar(path), refToVar(String(v ?? '')), maxLen));
         }
       }
+      lines.push(`\n  /* Figma color aliases */\n`);
+      lines.push(renderFigmaColorAliases(themeKey));
       const title = themeKey === 'light'
         ? 'SEMANTIC COLOR — Light Mode (default)'
         : 'SEMANTIC COLOR — Dark Mode';
@@ -375,6 +473,9 @@ function generateSCSS(raw) {
     }
   }
 
+  out += `\n  // Figma typography, font, line-height, and layout aliases\n`;
+  out += renderFigmaStaticAliases();
+
   out += `}\n`;
 
   // ── 반경 모드 ─────────────────────────────────────────────────
@@ -428,6 +529,8 @@ function generateSCSS(raw) {
         out += `  ${cssVar(path).padEnd(maxLen)}: ${refToVar(String(v ?? ''))};\n`;
       }
     }
+    out += `\n  // Figma color aliases\n`;
+    out += renderFigmaColorAliases('light');
     out += `}\n`;
 
     out += scssSection('SEMANTIC COLOR — Dark Mode');
@@ -443,6 +546,8 @@ function generateSCSS(raw) {
         out += `  ${cssVar(path).padEnd(maxLen)}: ${refToVar(String(v ?? ''))};\n`;
       }
     }
+    out += `\n  // Figma color aliases\n`;
+    out += renderFigmaColorAliases('dark');
     out += `}\n`;
   }
 
