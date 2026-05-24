@@ -1,0 +1,13 @@
+{
+  "name": "ich-courier-tokens",
+  "version": "1.0.0",
+  "description": "ICH.COURIER Design System Tokens",
+  "type": "module",
+  "scripts": {
+    "build-tokens": "style-dictionary build --config sd.config.js",
+    "watch-tokens": "style-dictionary build --config sd.config.js --watch"
+  },
+  "devDependencies": {
+    "style-dictionary": "^4.0.0"
+  }
+}
