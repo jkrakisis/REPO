@@ -33,18 +33,19 @@ button {
 .utility,
 .gnb {
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
   align-items: center;
   padding-inline: var(--spacing-lg-64);
   border-bottom: 1px solid var(--color\/gray\/black);
 }
 
 .utility {
+  grid-template-columns: 1fr auto;
   min-height: 55px;
   padding-block: var(--spacing-sm-12);
 }
 
 .gnb {
+  grid-template-columns: 1fr auto 1fr;
   min-height: 60px;
   border-bottom-width: 2px;
 }
@@ -55,6 +56,13 @@ button {
 .header-actions {
   display: flex;
   align-items: center;
+}
+
+.gnb-left {
+  display: flex;
+  align-items: stretch;
+  justify-self: start;
+  height: 100%;
 }
 
 .volume {
@@ -71,7 +79,7 @@ button {
   align-items: center;
   gap: var(--spacing-sm-12);
   min-width: 251px;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .brand-mark,
@@ -114,7 +122,6 @@ button {
 }
 
 .main-nav {
-  justify-self: start;
   height: 100%;
   border-left: 1px solid var(--color\/gray\/black);
 }
@@ -136,7 +143,8 @@ button {
   border-left: 1px solid var(--color\/gray\/black);
 }
 
-.header-actions button {
+.header-actions button,
+.global-center {
   position: relative;
   display: grid;
   place-items: center;
@@ -146,6 +154,11 @@ button {
   border-right: 1px solid var(--color\/gray\/black);
   background: transparent;
   cursor: pointer;
+}
+
+.global-center {
+  justify-self: center;
+  border-left: 1px solid var(--color\/gray\/black);
 }
 
 .header-actions span {
@@ -427,19 +440,25 @@ blockquote {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: var(--spacing-sm-8);
+  gap: var(--spacing-sm-6);
   margin: var(--spacing-md-40) 0 0;
-  padding: var(--spacing-md-24) 0;
+  padding: var(--spacing-md-24) 0 var(--spacing-md-20);
   border-bottom: 1px solid var(--color\/line\/line-color01);
   list-style: none;
 }
 
 .tags li {
+  min-height: 32px;
+  display: inline-flex;
+  align-items: center;
   padding: var(--spacing-sm-4) var(--spacing-sm-12);
   border: 1px solid var(--color\/line\/line-color01);
-  border-radius: var(--border-radius-050);
-  color: var(--color\/gray\/gray-5);
-  font-size: var(--link-xsmall);
+  border-radius: var(--border-radius-100);
+  background: var(--color\/background\/bg-color07);
+  color: var(--color-gray-blue-60);
+  font-size: var(--label-xsmall);
+  font-weight: var(--font-weight-500);
+  line-height: 1;
 }
 
 .article-actions {
@@ -472,6 +491,7 @@ blockquote {
 
 .related h2 {
   margin: 0;
+  color: var(--color\/gray\/black);
   font-size: var(--title-medium);
   line-height: 1.3;
 }
@@ -509,7 +529,7 @@ blockquote {
 
 .related-card strong {
   overflow: hidden;
-  color: var(--color\/gray\/gray-1);
+  color: var(--color\/gray\/black);
   font-size: var(--font-size-heading3);
   line-height: var(--line-height\/line-height-28);
   text-overflow: ellipsis;
@@ -613,23 +633,56 @@ address {
   }
 
   .gnb {
-    grid-template-columns: 1fr auto;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
     min-height: 64px;
+    width: 100vw;
+    max-width: 100vw;
+    padding: 0 88px 0 var(--spacing-sm-16);
+    overflow: hidden;
   }
 
   .compact {
     min-width: 0;
   }
 
+  .gnb-left {
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .brand {
+    gap: var(--spacing-sm-8);
+    min-width: 0;
+  }
+
+  .brand-title {
+    font-size: var(--link-large);
+  }
+
+  .header-actions {
+    position: fixed;
+    top: 0;
+    right: 0;
+    flex: 0 0 88px;
+    width: 88px;
+    height: 64px;
+    margin-left: 0;
+    background: var(--color\/background\/bg-color07);
+    z-index: 30;
+  }
+
   .brand-rule,
-  .main-nav {
+  .main-nav,
+  .global-center {
     display: none;
   }
 
-  .header-actions button {
+  .header-actions button,
+  .global-center {
     width: 44px;
     min-height: 64px;
-    font-size: 24px;
   }
 
   .sub-visual {
@@ -646,19 +699,37 @@ address {
   }
 
   .sub-visual-inner {
+    max-width: 100%;
     padding: 0 var(--spacing-sm-16) var(--spacing-md-32);
   }
 
   .sub-visual h1 {
+    max-width: calc(100vw - 32px);
+    font-size: 28px;
     white-space: normal;
+    word-break: break-all;
+    overflow-wrap: break-word;
   }
 
   .subtitle {
+    max-width: calc(100vw - 32px);
     margin-bottom: var(--spacing-md-40);
+    word-break: break-all;
+    overflow-wrap: break-word;
   }
 
   .article-shell {
     padding: var(--spacing-sm-16) var(--spacing-sm-16) var(--spacing-md-40);
+  }
+
+  .article-meta,
+  .article,
+  .summary,
+  .cover-image,
+  .article-photo,
+  .related {
+    width: 100%;
+    max-width: 100%;
   }
 
   .article-meta {
