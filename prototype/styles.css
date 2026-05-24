@@ -36,7 +36,7 @@ button {
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
   padding-inline: var(--spacing-lg-64);
-  border-bottom: 1px solid var(--color\/gray\/gray-2);
+  border-bottom: 1px solid var(--color\/gray\/black);
 }
 
 .utility {
@@ -46,7 +46,7 @@ button {
 
 .gnb {
   min-height: 60px;
-  border-bottom-width: 3px;
+  border-bottom-width: 2px;
 }
 
 .volume,
@@ -94,7 +94,7 @@ button {
 .brand-rule {
   width: 1px;
   height: 35px;
-  background: var(--color\/line\/line-color01);
+  background: var(--color\/gray\/black);
 }
 
 .compact {
@@ -133,18 +133,75 @@ button {
 .header-actions {
   justify-self: end;
   height: 100%;
-  border-left: 1px solid var(--color\/gray\/gray-2);
+  border-left: 1px solid var(--color\/gray\/black);
 }
 
 .header-actions button {
+  position: relative;
+  display: grid;
+  place-items: center;
   width: 60px;
   min-height: 60px;
   border: 0;
-  border-right: 1px solid var(--color\/gray\/gray-2);
+  border-right: 1px solid var(--color\/gray\/black);
   background: transparent;
   cursor: pointer;
-  font-size: 30px;
-  line-height: 1;
+}
+
+.header-actions span {
+  display: block;
+}
+
+.icon-search span {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--color\/gray\/black);
+  border-radius: 999px;
+}
+
+.icon-search span::after {
+  content: "";
+  position: absolute;
+  width: 9px;
+  height: 2px;
+  background: var(--color\/gray\/black);
+  transform: translate(11px, 16px) rotate(45deg);
+  transform-origin: left center;
+}
+
+.icon-lang span {
+  width: 26px;
+  height: 26px;
+  border: 2px solid var(--color\/gray\/black);
+  border-radius: 999px;
+  box-shadow: inset 0 0 0 5px var(--color\/background\/bg-color07);
+}
+
+.icon-menu span,
+.icon-menu span::before,
+.icon-menu span::after {
+  width: 26px;
+  height: 2px;
+  background: var(--color\/gray\/black);
+}
+
+.icon-menu span {
+  position: relative;
+}
+
+.icon-menu span::before,
+.icon-menu span::after {
+  content: "";
+  position: absolute;
+  left: 0;
+}
+
+.icon-menu span::before {
+  top: -8px;
+}
+
+.icon-menu span::after {
+  top: 8px;
 }
 
 .sub-visual {
@@ -153,9 +210,7 @@ button {
   display: flex;
   align-items: end;
   color: var(--color\/gray\/black);
-  background:
-    linear-gradient(90deg, rgba(0, 0, 0, 0.96), rgba(0, 0, 0, 0.46)),
-    #050607;
+  background: var(--color-gray-blue-80);
   overflow: hidden;
 }
 
@@ -164,26 +219,26 @@ button {
   position: absolute;
   top: 0;
   right: 0;
-  height: 330px;
-  width: 54%;
+  bottom: 0;
+  width: 50%;
   background:
-    linear-gradient(135deg, transparent 0 42%, rgba(255, 255, 255, 0.12) 42% 43%, transparent 43%),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.04), transparent);
-  opacity: 0.7;
+    linear-gradient(135deg, transparent 0 45%, rgba(255, 255, 255, 0.12) 45% 46%, transparent 46%),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+  opacity: 0.55;
 }
 
 .sub-visual::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, rgba(0, 0, 0, 0.94) 0%, rgba(0, 0, 0, 0.78) 34%, rgba(0, 0, 0, 0.12) 100%);
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.74) 0%, rgba(0, 0, 0, 0.44) 42%, rgba(0, 0, 0, 0.16) 100%);
 }
 
 .sub-visual-inner {
   position: relative;
   z-index: 1;
   width: 100%;
-  padding: 0 var(--resolution\/layout-gap3) var(--spacing-md-40);
+  padding: 0 var(--resolution\/layout-gap) var(--spacing-md-40);
 }
 
 .eyebrow,
@@ -269,14 +324,25 @@ button {
 .cover-image,
 .article-photo,
 .thumb {
-  background-image: url("./assets/figma-reference.png");
-  background-repeat: no-repeat;
-  background-size: cover;
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(135deg, transparent 0 49%, rgba(255, 255, 255, 0.22) 49% 50%, transparent 50%),
+    var(--color-gray-blue-20);
+}
+
+.cover-image::after,
+.article-photo::after,
+.thumb::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  pointer-events: none;
 }
 
 .cover-image {
   aspect-ratio: 16 / 9;
-  background-position: center 23%;
 }
 
 .summary {
@@ -354,8 +420,7 @@ blockquote {
 .article-photo {
   aspect-ratio: 16 / 9;
   margin: var(--spacing-lg-48) 0;
-  filter: grayscale(1);
-  background-position: center 46%;
+  background-color: var(--color-gray-blue-30);
 }
 
 .tags {
@@ -433,7 +498,7 @@ blockquote {
 
 .thumb {
   aspect-ratio: 16 / 9;
-  background-position: center 85%;
+  background-color: var(--color-gray-blue-20);
 }
 
 .card-meta {
@@ -572,16 +637,12 @@ address {
   }
 
   .sub-visual::before {
-    left: 35%;
-    width: 65%;
-    height: 230px;
-    background-position: right -192px top -36px;
-    background-size: 600px auto;
-    opacity: 0.78;
+    width: 58%;
+    opacity: 0.5;
   }
 
   .sub-visual::after {
-    background: linear-gradient(90deg, rgba(0, 0, 0, 0.92), rgba(0, 0, 0, 0.42));
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.68), rgba(0, 0, 0, 0.28));
   }
 
   .sub-visual-inner {
