@@ -2,7 +2,6 @@
 
 Figma `Project ICH.COURIER 2604 new`에서 추출한 디자인 시스템 토큰과, 해당 토큰을 적용한 정적 HTML/CSS 프로토타입을 관리하는 저장소입니다.
 
-- Figma source: [Project ICH.COURIER 2604 new](https://www.figma.com/design/gjLD3fpjEnGJ8DkN3KPeLR/Project_ICH.COURIER_2604_new?node-id=7034-20498&t=0TTDoBhPPlwPXHMd-4)
 - GitHub repository: [jkrakisis/REPO](https://github.com/jkrakisis/REPO)
 - GitHub Pages: [https://jkrakisis.github.io/REPO/prototype/](https://jkrakisis.github.io/REPO/prototype/)
 
@@ -130,3 +129,4 @@ git push
 - `tokens.css`, `tokens.scss`는 생성 파일이므로 직접 수정하기보다 `tokens.json` 또는 `sd.config.js`를 수정한 뒤 다시 빌드하는 것을 권장합니다.
 - `prototype/desktop.png`, `prototype/mobile.png`는 로컬 화면 검수용 캡처 파일이며 Git에는 포함하지 않습니다.
 - Style Dictionary 빌드 중 토큰 이름 충돌 경고가 표시될 수 있습니다. 현재 설정은 Figma alias를 포함한 custom formatter 출력 기준으로 관리합니다.
+
