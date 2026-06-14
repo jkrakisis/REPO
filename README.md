@@ -130,3 +130,62 @@ git push
 - `prototype/desktop.png`, `prototype/mobile.png`는 로컬 화면 검수용 캡처 파일이며 Git에는 포함하지 않습니다.
 - Style Dictionary 빌드 중 토큰 이름 충돌 경고가 표시될 수 있습니다. 현재 설정은 Figma alias를 포함한 custom formatter 출력 기준으로 관리합니다.
 
+## Automation: Create New GitHub Project
+
+다른 Figma 파일을 기준으로 새 토큰 프로젝트와 새 GitHub repository를 만들 때는 아래 스크립트를 사용합니다.
+
+### Requirements
+
+```bash
+git --version
+gh --version
+npm --version
+```
+
+GitHub CLI가 로그인되어 있어야 합니다.
+
+```bash
+gh auth login
+```
+
+### Create Project
+
+```powershell
+.\scripts\create-project.ps1 `
+  -ProjectName "Project" `
+  -GithubOwner "jkrakisis" `
+  -GithubRepo "project" `
+  -FigmaUrl "https://www.figma.com/design/..."
+```
+
+실행하면 아래 작업을 자동으로 진행합니다.
+
+1. `D:\design_workflow\project` 폴더 생성
+2. 현재 토큰 프로젝트 구조 복사
+3. `package.json`, `README.md`, `figma-source.json` 갱신
+4. `npm install` 실행
+5. `npm run build-tokens` 실행
+6. Git repository 초기화
+7. GitHub repository 생성
+8. `main` branch push
+9. GitHub Pages 설정 시도
+
+### Options
+
+```powershell
+-Visibility private     # private repository 생성
+-DestinationRoot "D:\design_workflow"  # 생성 위치 변경
+-SkipInstall            # npm install 생략
+-SkipPages              # GitHub Pages 설정 생략
+-NoPush                 # GitHub push 생략
+```
+
+생성 후 공유 URL 형식은 아래와 같습니다.
+
+```text
+Repository: https://github.com/jkrakisis/project
+Prototype:   https://jkrakisis.github.io/project/prototype/
+```
+
+> Figma URL은 `figma-source.json`에 기록됩니다. Figma에서 추출한 토큰 값이 달라진 경우 `tokens.json`을 교체한 뒤 `npm run build-tokens`를 실행합니다.
+
