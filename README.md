@@ -1,6 +1,6 @@
-# ICH.COURIER Design System Tokens
+# Design System Tokens
 
-Figma `Project ICH.COURIER 2604 new`에서 추출한 디자인 시스템 토큰과, 해당 토큰을 적용한 정적 HTML/CSS 프로토타입을 관리하는 저장소입니다.
+Figma `Project 2604 new`에서 추출한 디자인 시스템 토큰과, 해당 토큰을 적용한 정적 HTML/CSS 프로토타입을 관리하는 저장소입니다.
 
 - GitHub repository: [jkrakisis/REPO](https://github.com/jkrakisis/REPO)
 - GitHub Pages: [https://jkrakisis.github.io/REPO/prototype/](https://jkrakisis.github.io/REPO/prototype/)
